@@ -26,8 +26,7 @@ global fuente    "CASEN, muestra del curso (60 personas)"
 * Uso `local` para las listas de variables y rutas internas (`datos`, `controles`,
 * `grupos`) porque solo deben funcionar mientras corre este do-file y así evito que
 * interfieran o sean pisadas por otros scripts. Uso `global` para `umbral` y `fuente`
-* porque son parámetros generales de referencia (como el corte de ingreso y la nota
-* al pie de exportación) que podrían compartirse en toda la sesión o en otros do-files.
+* porque son parámetros generales de referencia (como el corte de ingreso ) que podrían compartirse  en otros do-files.
 
 * --- 2. Carga y preparación de datos ----------------------------------------
 import delimited "`datos'", clear varnames(1) encoding("utf-8")
@@ -75,8 +74,8 @@ summarize `ing_miles'
 * Explicación sobre tempvar:
 * `tempvar` crea una variable con un nombre interno único que Stata borra
 * automáticamente al terminar el bloque o el do-file. Es más seguro que crear una
-* variable normal y usar `drop` porque garantiza que nunca pisarás por accidente
-* una variable existente en la base ni dejarás residuos si el script se detiene antes.
+* variable normal y usar `drop` porque garantiza que nunca modificara por accidente
+* una variable existente en la base ni dejará residuos si el script se detiene antes.
 
 * --- 7. Manejo explícito de missing al filtrar ------------------------------
 count if `depvar' > $umbral & !missing(`depvar')
